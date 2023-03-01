@@ -17,7 +17,7 @@ int CreateTCPServerSocket(int port)
 
  /* Create socket for incoming connections */
  if ((sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
-     return -1;
+  return -1;
       
  /* Construct local address structure */
  memset(&ServAddr, 0, sizeof(ServAddr));   /* Zero out structure */
@@ -47,7 +47,7 @@ int AcceptTCPConnection(int servSock)
     
  /* Wait for a client to connect */
  if ((clntSock = accept(servSock, (struct sockaddr *) &ClntAddr, &clntLen)) < 0)
-     return -1;
+  return -1;
     
  /* clntSock is connected to a client! */
     
@@ -75,7 +75,7 @@ void * tcpd_daemon(void *p) {
     m->data=t->data;
     pthread_create(&thr, NULL, t->hand, m);
     pthread_detach(thr);
-//    usleep(20);
+    usleep(1000);
     c=AcceptTCPConnection(s);
    }
    close(s);
